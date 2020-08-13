@@ -19,7 +19,7 @@ public class Money implements Expression{
     }
 
     public Expression plus(Money addend) {
-        return new Money(amount + addend.amount, currency);
+        return new Sum(this, addend);
     }
 
     public static Money dollar(int amount) {
@@ -34,6 +34,10 @@ public class Money implements Expression{
         Money money = (Money) object;
         return amount == money.amount
                 && this.currency == money.currency;
+    }
+
+    public Money reduce(String to) {
+        return this;
     }
 
     @Override
